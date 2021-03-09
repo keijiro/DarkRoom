@@ -20,7 +20,7 @@ public sealed class WebcamSelector : MonoBehaviour
         foreach (var device in WebCamTexture.devices)
             dropdown.options.Add(new Dropdown.OptionData(device.name));
 
-        dropdown.value = 0;
+        dropdown.value = dropdown.options.Count > 0 ? 1 : 0;
         dropdown.RefreshShownValue();
     }
 
