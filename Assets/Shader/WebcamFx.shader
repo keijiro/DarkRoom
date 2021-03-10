@@ -10,7 +10,7 @@ Shader "Hidden/DarkRoom/WebcamFx"
     float4 _FeedbackTexture_TexelSize;
     float4 _WebcamInput_TexelSize;
 
-    float _FeedbackRatio;
+    float _FeedbackAmount;
 
     void VertexBlit(uint vid : SV_VertexID,
                     out float4 position : SV_Position,
@@ -66,7 +66,7 @@ Shader "Hidden/DarkRoom/WebcamFx"
             tex2D(_FeedbackTexture, uv + float2(+d2.x, +d2.y)).rgb * w2 * w2;
 
         float3 wi = tex2D(_WebcamInput, uv).rgb; 
-        return float4(lerp(wi, fb, _FeedbackRatio), 1);
+        return float4(lerp(wi, fb, _FeedbackAmount), 1);
     }
 
     ENDHLSL

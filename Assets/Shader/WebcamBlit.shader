@@ -4,7 +4,10 @@ Shader "Hidden/DarkRoom/WebcamBlit"
 
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-    sampler2D _Texture;
+    sampler2D _FeedbackTexture;
+    sampler2D _WebcamInput;
+
+    float _BlendRatio;
 
     void VertexBlit(uint vid : SV_VertexID,
                     out float4 position : SV_Position,
@@ -19,7 +22,9 @@ Shader "Hidden/DarkRoom/WebcamBlit"
     float4 FragmentBlit(float4 position : SV_Position,
                         float2 uv : TEXCOORD0) : SV_Target
     {
-        return tex2D(_Texture, uv);
+        float3 c0 = tex2D(_FeedbackTexture, uv).rgb;
+        float3 c1 = tex2D(_WebcamInput, uv).rgb;
+        return float4(lerp(c1, max(c0, c1), _BlendRatio), 1);
     }
 
     ENDHLSL

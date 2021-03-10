@@ -7,7 +7,8 @@ public sealed class WebcamView : MonoBehaviour
     #region Editable attributes
 
     [SerializeField] WebcamSelector _webcam = null;
-    [SerializeField, Range(0, 1)] float _feedbackRatio = 0.5f;
+    [SerializeField, Range(0, 1)] float _feedbackAmount = 0.5f;
+    [SerializeField, Range(0, 1)] float _blendRatio = 0.5f;
 
     #endregion
 
@@ -57,14 +58,16 @@ public sealed class WebcamView : MonoBehaviour
         var m1 = _materials.fx;
         m1.SetTexture("_FeedbackTexture", _feedback.Item1);
         m1.SetTexture("_WebcamInput", _webcam.Texture);
-        m1.SetFloat("_FeedbackRatio", _feedbackRatio);
+        m1.SetFloat("_FeedbackAmount", _feedbackAmount);
         m1.SetPass(0);
         RenderTexture.active = _feedback.Item2;
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, 1);
 
         // Blit to screen
         var m2 = _materials.blit;
-        m2.SetTexture("_Texture", _feedback.Item2);
+        m2.SetTexture("_FeedbackTexture", _feedback.Item2);
+        m2.SetTexture("_WebcamInput", _webcam.Texture);
+        m2.SetFloat("_BlendRatio", _blendRatio);
         Graphics.DrawProcedural(m2, BigBounds, MeshTopology.Triangles, 6, 1);
 
         // Swap
