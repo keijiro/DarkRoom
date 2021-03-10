@@ -653,8 +653,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _webcam: {fileID: 1606632483}
-  _feedbackAmount: 0.95
-  _blendRatio: 0.8
+  _feedbackAmount: 0.96
+  _feedbackBlend: 0.83
+  _noiseFrequency: 0.3
+  _noiseToBrightness: 0.75
+  _noiseToDisplacement: 0.75
   _fxShader: {fileID: 4800000, guid: 7d75dc6ed513e8142a033d6b22c4d5ff, type: 3}
   _blitShader: {fileID: 4800000, guid: 40e503e4b5cf5fe4c9172fd8b80760ec, type: 3}
 --- !u!4 &881033457
