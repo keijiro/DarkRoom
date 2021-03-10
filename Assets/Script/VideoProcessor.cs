@@ -11,8 +11,9 @@ public sealed class VideoProcessor : MonoBehaviour
     [SerializeField, Range(0, 1)] float _feedbackAmount = 0.5f;
     [SerializeField, Range(0, 1)] float _feedbackBlend = 0.5f;
     [SerializeField, Range(0, 1)] float _noiseFrequency = 0.0f;
-    [SerializeField, Range(0, 1)] float _noiseToBrightness = 0.0f;
-    [SerializeField, Range(0, 1)] float _noiseToDisplacement = 0.0f;
+    [SerializeField, Range(0, 1)] float _noiseToFlicker = 0.0f;
+    [SerializeField, Range(0, 1)] float _noiseToShake = 0.0f;
+    [SerializeField, Range(0, 1)] float _noiseToStretch = 0.0f;
 
     #endregion
 
@@ -48,7 +49,8 @@ public sealed class VideoProcessor : MonoBehaviour
       => new Vector2(DynamicNoiseFrequency, NoiseExponentValue);
 
     Vector4 EffectParamVector
-      => new Vector4(_feedbackBlend, _noiseToBrightness, _noiseToDisplacement);
+      => new Vector4(_feedbackBlend, _noiseToFlicker,
+                     _noiseToShake, _noiseToStretch);
 
     #endregion
 

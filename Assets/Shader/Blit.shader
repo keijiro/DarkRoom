@@ -11,8 +11,11 @@ Shader "Hidden/DarkRoom/Blit"
     sampler2D _WebcamInput;
     float4 _WebcamInput_TexelSize;
 
-    float2 _NoiseParams; // Frequency, Exponent
-    float3 _EffectParams; // Feedback, Noise to brightness, Noise to displace
+    // Frequency, Exponent
+    float2 _NoiseParams;
+
+    // Feedback, Noise to brightness, Noise to H/V displacement
+    float4 _EffectParams;
 
     float RTime(float multiplier)
     {
@@ -37,15 +40,19 @@ Shader "Hidden/DarkRoom/Blit"
         float nexp     = _NoiseParams.y;
         float feedback = _EffectParams.x;
         float n2br     = _EffectParams.y;
-        float n2disp   = _EffectParams.z;
+        float n2hdisp  = _EffectParams.z;
+        float n2vdisp  = _EffectParams.w;
 
         // Glitch amount
         float n = snoise(float2(uv.y * nfreq, RTime(6)));
         n = pow(abs(n), nexp);
 
+        // Vertical displacement
+        uv.y += n * n2vdisp * 0.2;
+
         // Horizontal displacement
         uint ln = (uv.y + RTime(60)) * _WebcamInput_TexelSize.w;
-        float disp = GenerateHashedRandomFloat(ln) * n * n2disp * 0.2;
+        float disp = GenerateHashedRandomFloat(ln) * n * n2hdisp * 0.2;
 
         // Webcam input samples with R/B displacement
         float c_r = tex2D(_WebcamInput, uv - float2(disp, 0)).r;
