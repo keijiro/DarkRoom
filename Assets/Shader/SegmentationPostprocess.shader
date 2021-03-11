@@ -23,11 +23,7 @@ Shader "Hidden/DarkRoom/Segmentation/Postprocess"
     float4 Fragment(float4 position : SV_Position,
                     float2 uv : TEXCOORD0) : SV_Target
     {
-        // Denormalization
-        float s = (tex2D(_MainTex, uv).r - 0.5) * 32;
-
-        // Sigmoid activator
-        return 1 / (1 + exp(-s));
+        return 1 / (1 + exp(-tex2D(_MainTex, uv).r));
     }
 
     ENDCG

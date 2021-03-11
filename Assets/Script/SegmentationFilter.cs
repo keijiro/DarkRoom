@@ -19,8 +19,10 @@ public sealed class SegmentationFilter : MonoBehaviour
     // We use a bit strange aspect ratio (20:11) because we have to use 16n+1
     // for these dimension values. It may distort input images a bit, but it
     // might not be a problem for the segmentation models.
-    public const int Width = 640 + 1;
-    public const int Height = 352 + 1;
+    public const int InWidth = 640 + 1;
+    public const int InHeight = 352 + 1;
+    public const int OutWidth = InWidth / 8 + 1;
+    public const int OutHeight = InHeight / 8 + 1;
 
     #endregion
 
@@ -28,6 +30,7 @@ public sealed class SegmentationFilter : MonoBehaviour
 
     RenderTexture _webcamBuffer;
     ComputeBuffer _preprocessed;
+    RenderTexture _generated;
     RenderTexture _postprocessed;
     Material _postprocessor;
     IWorker _worker;
@@ -46,13 +49,14 @@ public sealed class SegmentationFilter : MonoBehaviour
     void Start()
     {
         _webcamBuffer = new RenderTexture(1920, 1080, 0);
-        _postprocessed = RTUtil.NewSingleChannelRT(1920, 1000);
+        _generated = RTUtil.NewSingleChannelHalfRT(OutWidth, OutHeight);
+        _postprocessed = RTUtil.NewSingleChannelRT(OutWidth, OutHeight);
         _postprocessor = new Material(_postprocessShader);
     }
 
     void OnEnable()
     {
-        _preprocessed = new ComputeBuffer(Width * Height * 3, sizeof(float));
+        _preprocessed = new ComputeBuffer(InWidth * InHeight * 3, sizeof(float));
         _worker = ModelLoader.Load(_model).CreateWorker();
     }
 
@@ -68,6 +72,7 @@ public sealed class SegmentationFilter : MonoBehaviour
     void OnDestroy()
     {
         if (_webcamBuffer != null) Destroy(_webcamBuffer);
+        if (_generated != null) Destroy(_generated);
         if (_postprocessed != null) Destroy(_postprocessed);
         if (_postprocessor != null) Destroy(_postprocessor);
     }
@@ -82,23 +87,22 @@ public sealed class SegmentationFilter : MonoBehaviour
         // Preprocessing for BodyPix
         _preprocessor.SetTexture(0, "_Texture", _webcamBuffer);
         _preprocessor.SetBuffer(0, "_Tensor", _preprocessed);
-        _preprocessor.SetInt("_Width", Width);
-        _preprocessor.SetInt("_Height", Height);
-        _preprocessor.Dispatch(0, Width / 8 + 1, Height / 8 + 1, 1);
+        _preprocessor.SetInt("_Width", InWidth);
+        _preprocessor.SetInt("_Height", InHeight);
+        _preprocessor.Dispatch(0, OutWidth, OutHeight, 1);
 
         // BodyPix invocation
-        using (var tensor = new Tensor(1, Height, Width, 3, _preprocessed))
+        using (var tensor = new Tensor(1, InHeight, InWidth, 3, _preprocessed))
             _worker.Execute(tensor);
 
         // BodyPix output retrieval
         var output = _worker.PeekOutput("float_segments");
 
         // Bake into a render texture with normalizing into [0, 1].
-        var segsRT = output.ToRenderTexture(0, 0, 1.0f / 32, 0.5f);
+        output.ToRenderTexture(_generated);
 
         // Postprocessing shader invocation
-        Graphics.Blit(segsRT, _postprocessed, _postprocessor);
-        Destroy(segsRT);
+        Graphics.Blit(_generated, _postprocessed, _postprocessor);
     }
 
     #endregion
