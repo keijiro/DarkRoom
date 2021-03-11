@@ -5,11 +5,13 @@ Shader "Hidden/DarkRoom/Blit"
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
     #include "Packages/jp.keijiro.noiseshader/Shader/SimplexNoise2D.hlsl"
 
-    sampler2D _FeedbackBuffer;
-    float4 _FeedbackBuffer_TexelSize;
+    sampler2D _FeedbackTexture;
+    sampler2D _CameraTexture;
+    sampler2D _MaskTexture;
 
-    sampler2D _WebcamInput;
-    float4 _WebcamInput_TexelSize;
+    float4 _FeedbackTexture_TexelSize;
+    float4 _CameraTexture_TexelSize;
+    float4 _MaskTexture_TexelSize;
 
     // Frequency, Exponent
     float2 _NoiseParams;
@@ -51,21 +53,26 @@ Shader "Hidden/DarkRoom/Blit"
         uv.y += n * n2vdisp * 0.2;
 
         // Horizontal displacement
-        uint ln = (uv.y + RTime(60)) * _WebcamInput_TexelSize.w;
+        uint ln = (uv.y + RTime(60)) * _CameraTexture_TexelSize.w;
         float disp = GenerateHashedRandomFloat(ln) * n * n2hdisp * 0.2;
 
         // Webcam input samples with R/B displacement
-        float c_r = tex2D(_WebcamInput, uv - float2(disp, 0)).r;
-        float c_g = tex2D(_WebcamInput, uv                  ).g;
-        float c_b = tex2D(_WebcamInput, uv + float2(disp, 0)).b;
+        float c_r = tex2D(_CameraTexture, uv - float2(disp, 0)).r;
+        float c_g = tex2D(_CameraTexture, uv                  ).g;
+        float c_b = tex2D(_CameraTexture, uv + float2(disp, 0)).b;
         float3 c_in = float3(c_r, c_g, c_b);
 
         // Blend with a feedback sample
-        float3 c_fb = tex2D(_FeedbackBuffer, uv).rgb;
+        float3 c_fb = tex2D(_FeedbackTexture, uv).rgb;
         float3 c_out = lerp(c_in, max(c_in, c_fb), feedback);;
 
         // Noise to brightness
         c_out *= 1 - n * n2br;
+
+        // Temp: Desaturation with mask
+        float mask = tex2D(_MaskTexture, uv).r;
+        mask = smoothstep(0.4, 0.5, mask);
+        c_out = lerp(dot(c_out, 0.2), c_out, mask);
 
         return float4(c_out, 1);
     }

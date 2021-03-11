@@ -4,11 +4,13 @@ Shader "Hidden/DarkRoom/Feedback"
 
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-    sampler2D _FeedbackBuffer;
-    float4 _FeedbackBuffer_TexelSize;
+    sampler2D _FeedbackTexture;
+    sampler2D _CameraTexture;
+    sampler2D _MaskTexture;
 
-    sampler2D _WebcamInput;
-    float4 _WebcamInput_TexelSize;
+    float4 _FeedbackTexture_TexelSize;
+    float4 _CameraTexture_TexelSize;
+    float4 _MaskTexture_TexelSize;
 
     float _Feedback;
 
@@ -31,41 +33,41 @@ Shader "Hidden/DarkRoom/Feedback"
         const float w1 = 0.3162162162;
         const float w2 = 0.0702702703;
 
-        const float2 d1 = 1.3846153846 * _FeedbackBuffer_TexelSize.xy;
-        const float2 d2 = 3.2307692308 * _FeedbackBuffer_TexelSize.xy;
+        const float2 d1 = 1.3846153846 * _FeedbackTexture_TexelSize.xy;
+        const float2 d2 = 3.2307692308 * _FeedbackTexture_TexelSize.xy;
 
         float3 fb =
-            tex2D(_FeedbackBuffer, uv + float2(-d2.x, -d2.y)).rgb * w2 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(-d1.x, -d2.y)).rgb * w1 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(    0, -d2.y)).rgb * w0 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(+d1.x, -d2.y)).rgb * w1 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(+d2.x, -d2.y)).rgb * w2 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(-d2.x, -d2.y)).rgb * w2 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(-d1.x, -d2.y)).rgb * w1 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(    0, -d2.y)).rgb * w0 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(+d1.x, -d2.y)).rgb * w1 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(+d2.x, -d2.y)).rgb * w2 * w2 +
 
-            tex2D(_FeedbackBuffer, uv + float2(-d2.x, -d1.y)).rgb * w2 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(-d1.x, -d1.y)).rgb * w1 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(    0, -d1.y)).rgb * w0 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(+d1.x, -d1.y)).rgb * w1 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(+d2.x, -d1.y)).rgb * w2 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(-d2.x, -d1.y)).rgb * w2 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(-d1.x, -d1.y)).rgb * w1 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(    0, -d1.y)).rgb * w0 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(+d1.x, -d1.y)).rgb * w1 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(+d2.x, -d1.y)).rgb * w2 * w1 +
 
-            tex2D(_FeedbackBuffer, uv + float2(-d2.x,     0)).rgb * w2 * w0 +
-            tex2D(_FeedbackBuffer, uv + float2(-d1.x,     0)).rgb * w1 * w0 +
-            tex2D(_FeedbackBuffer, uv + float2(    0,     0)).rgb * w0 * w0 +
-            tex2D(_FeedbackBuffer, uv + float2(+d1.x,     0)).rgb * w1 * w0 +
-            tex2D(_FeedbackBuffer, uv + float2(+d2.x,     0)).rgb * w2 * w0 +
+            tex2D(_FeedbackTexture, uv + float2(-d2.x,     0)).rgb * w2 * w0 +
+            tex2D(_FeedbackTexture, uv + float2(-d1.x,     0)).rgb * w1 * w0 +
+            tex2D(_FeedbackTexture, uv + float2(    0,     0)).rgb * w0 * w0 +
+            tex2D(_FeedbackTexture, uv + float2(+d1.x,     0)).rgb * w1 * w0 +
+            tex2D(_FeedbackTexture, uv + float2(+d2.x,     0)).rgb * w2 * w0 +
 
-            tex2D(_FeedbackBuffer, uv + float2(-d2.x, +d1.y)).rgb * w2 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(-d1.x, +d1.y)).rgb * w1 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(    0, +d1.y)).rgb * w0 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(+d1.x, +d1.y)).rgb * w1 * w1 +
-            tex2D(_FeedbackBuffer, uv + float2(+d2.x, +d1.y)).rgb * w2 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(-d2.x, +d1.y)).rgb * w2 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(-d1.x, +d1.y)).rgb * w1 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(    0, +d1.y)).rgb * w0 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(+d1.x, +d1.y)).rgb * w1 * w1 +
+            tex2D(_FeedbackTexture, uv + float2(+d2.x, +d1.y)).rgb * w2 * w1 +
 
-            tex2D(_FeedbackBuffer, uv + float2(-d2.x, +d2.y)).rgb * w2 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(-d1.x, +d2.y)).rgb * w1 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(    0, +d2.y)).rgb * w0 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(+d1.x, +d2.y)).rgb * w1 * w2 +
-            tex2D(_FeedbackBuffer, uv + float2(+d2.x, +d2.y)).rgb * w2 * w2;
+            tex2D(_FeedbackTexture, uv + float2(-d2.x, +d2.y)).rgb * w2 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(-d1.x, +d2.y)).rgb * w1 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(    0, +d2.y)).rgb * w0 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(+d1.x, +d2.y)).rgb * w1 * w2 +
+            tex2D(_FeedbackTexture, uv + float2(+d2.x, +d2.y)).rgb * w2 * w2;
 
-        float3 wi = tex2D(_WebcamInput, uv).rgb; 
+        float3 wi = tex2D(_CameraTexture, uv).rgb; 
         return float4(lerp(wi, fb, _Feedback), 1);
     }
 

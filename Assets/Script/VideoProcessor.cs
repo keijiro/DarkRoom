@@ -7,7 +7,6 @@ public sealed class VideoProcessor : MonoBehaviour
 {
     #region Editable attributes
 
-    [SerializeField] WebcamSelector _webcam = null;
     [SerializeField, Range(0, 1)] float _feedbackAmount = 0.5f;
     [SerializeField, Range(0, 1)] float _feedbackBlend = 0.5f;
     [SerializeField, Range(0, 1)] float _noiseFrequency = 0.0f;
@@ -24,8 +23,9 @@ public sealed class VideoProcessor : MonoBehaviour
 
     #endregion
 
-    #region Runtime resources
+    #region Private variables
 
+    SegmentationFilter _source;
     (Material fx, Material blit) _materials;
     (RenderTexture, RenderTexture) _feedback;
 
@@ -58,6 +58,7 @@ public sealed class VideoProcessor : MonoBehaviour
 
     void Start()
     {
+        _source = GetComponent<SegmentationFilter>();
         _materials = (new Material(_fxShader), new Material(_blitShader));
         _feedback = (NewFeedbackRT(), NewFeedbackRT());
     }
@@ -74,8 +75,9 @@ public sealed class VideoProcessor : MonoBehaviour
     {
         // Feedback with effects
         var m1 = _materials.fx;
-        m1.SetTexture("_FeedbackBuffer", _feedback.Item1);
-        m1.SetTexture("_WebcamInput", _webcam.Texture);
+        m1.SetTexture("_FeedbackTexture", _feedback.Item1);
+        m1.SetTexture("_CameraTexture", _source.CameraTexture);
+        m1.SetTexture("_MaskTexture", _source.MaskTexture);
         m1.SetFloat("_Feedback", _feedbackAmount);
         m1.SetPass(0);
         RenderTexture.active = _feedback.Item2;
@@ -83,8 +85,9 @@ public sealed class VideoProcessor : MonoBehaviour
 
         // Blit to screen
         var m2 = _materials.blit;
-        m2.SetTexture("_FeedbackBuffer", _feedback.Item2);
-        m2.SetTexture("_WebcamInput", _webcam.Texture);
+        m2.SetTexture("_FeedbackTexture", _feedback.Item2);
+        m2.SetTexture("_CameraTexture", _source.CameraTexture);
+        m2.SetTexture("_MaskTexture", _source.MaskTexture);
         m2.SetVector("_NoiseParams", NoiseParamVector);
         m2.SetVector("_EffectParams", EffectParamVector);
         Graphics.DrawProcedural(m2, BigBounds, MeshTopology.Triangles, 6, 1);
