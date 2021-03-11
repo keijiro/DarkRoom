@@ -1,0 +1,42 @@
+#pragma kernel Preprocess
+#pragma kernel Postprocess
+
+// Common properties
+
+uint _Width, _Height;
+
+// Preprocessing
+
+sampler2D _InSampler;
+RWBuffer<float> _OutTensor;
+
+[numthreads(8, 8, 1)]
+void Preprocess(uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy >= uint2(_Width, _Height))) return;
+
+    float2 uv = (id.xy + 0.5) / float2(_Width, _Height);
+    uv.y = 1 - uv.y;
+
+    float3 rgb = tex2Dlod(_InSampler, float4(uv, 0, 0)).rgb;
+    rgb = rgb * 2 - 1;
+
+    uint offs = (id.y * _Width + id.x) * 3;
+    _OutTensor[offs + 0] = rgb.r;
+    _OutTensor[offs + 1] = rgb.g;
+    _OutTensor[offs + 2] = rgb.b;
+}
+
+// Postprocessing
+
+Texture2D<float> _InTexture;
+RWTexture2D<float> _OutTexture;
+
+[numthreads(8, 8, 1)]
+void Postprocess(uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy >= uint2(_Width, _Height))) return;
+
+    float a = _InTexture[id.xy].r;
+    _OutTexture[id.xy].r = 1 / (1 + exp(-a));
+}

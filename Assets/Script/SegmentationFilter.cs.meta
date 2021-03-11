@@ -6,8 +6,7 @@ MonoImporter:
   defaultReferences:
   - _webcam: {instanceID: 0}
   - _model: {fileID: 5022602860645237092, guid: 1f792b99e1f313d4c8f1ebec6307c6be, type: 3}
-  - _preprocessor: {fileID: 7200000, guid: 6f6d5dcd62b5e4842a31dbe6f2b3fe9b, type: 3}
-  - _postprocessShader: {fileID: 4800000, guid: 49cd656e7daf4244083b3f25f664d174, type: 3}
+  - _compute: {fileID: 7200000, guid: 6f6d5dcd62b5e4842a31dbe6f2b3fe9b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

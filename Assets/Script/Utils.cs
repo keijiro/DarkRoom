@@ -4,19 +4,34 @@ namespace DarkRoom {
 
 static class RTUtil
 {
-    public static RenderTextureFormat SingleChannelRTFormat
+    public static RenderTextureFormat SingleChannelFormat
       => SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.R8)
            ? RenderTextureFormat.R8 : RenderTextureFormat.Default;
 
-    public static RenderTextureFormat SingleChannelHalfRTFormat
+    public static RenderTextureFormat SingleChannelHalfFormat
       => SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.RHalf)
            ? RenderTextureFormat.RHalf : RenderTextureFormat.ARGBHalf;
 
-    public static RenderTexture NewSingleChannelRT(int width, int height)
-      => new RenderTexture(width, height, 0, SingleChannelRTFormat);
+    public static RenderTexture NewSingleChannel(int width, int height)
+      => NewRT(width, height, SingleChannelFormat);
 
-    public static RenderTexture NewSingleChannelHalfRT(int width, int height)
-      => new RenderTexture(width, height, 0, SingleChannelHalfRTFormat);
+    public static RenderTexture NewSingleChannelHalf(int width, int height)
+      => NewRT(width, height, SingleChannelHalfFormat);
+
+    public static RenderTexture NewSingleChannelUav(int width, int height)
+      => NewRT(width, height, SingleChannelFormat, true);
+
+    public static RenderTexture NewSingleChannelHalfUav(int width, int height)
+      => NewRT(width, height, SingleChannelHalfFormat, true);
+
+    public static RenderTexture NewRT
+      (int width, int height, RenderTextureFormat format, bool uav = false)
+    {
+        var rt = new RenderTexture(width, height, 0, format);
+        if (uav) rt.enableRandomWrite = true;
+        rt.Create();
+        return rt;
+    }
 }
 
 static class ComputeShaderExtensions
