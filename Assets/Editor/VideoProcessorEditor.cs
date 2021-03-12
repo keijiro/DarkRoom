@@ -10,16 +10,18 @@ sealed class VideoProcessorEditor : Editor
     (SerializedProperty prop, GUIContent label) _feedbackBlend;
     (SerializedProperty prop, GUIContent label) _noiseFrequency;
     (SerializedProperty prop, GUIContent label) _noiseToFlicker;
-    (SerializedProperty prop, GUIContent label) _noiseToShake;
+    (SerializedProperty prop, GUIContent label) _noiseToRgbShake;
+    (SerializedProperty prop, GUIContent label) _noiseToMaskedShake;
     (SerializedProperty prop, GUIContent label) _noiseToStretch;
 
     void OnEnable()
     {
         _feedbackAmount = Property("_feedbackAmount", "Amount");
-        _feedbackBlend  = Property("_feedbackBlend", "Ratio");
+        _feedbackBlend = Property("_feedbackBlend", "Ratio");
         _noiseFrequency = Property("_noiseFrequency", "Frequency");
         _noiseToFlicker = Property("_noiseToFlicker", "Flicker");
-        _noiseToShake   = Property("_noiseToShake", "Shake");
+        _noiseToRgbShake = Property("_noiseToRgbShake", "RGB Shake");
+        _noiseToMaskedShake = Property("_noiseToMaskedShake", "Masked Shake");
         _noiseToStretch = Property("_noiseToStretch", "Stretch");
     }
 
@@ -37,7 +39,8 @@ sealed class VideoProcessorEditor : Editor
         EditorGUI.indentLevel++;
         PropertyField(_noiseFrequency);
         PropertyField(_noiseToFlicker);
-        PropertyField(_noiseToShake);
+        PropertyField(_noiseToRgbShake);
+        PropertyField(_noiseToMaskedShake);
         PropertyField(_noiseToStretch);
         EditorGUI.indentLevel--;
 

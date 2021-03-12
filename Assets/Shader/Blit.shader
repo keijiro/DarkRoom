@@ -13,10 +13,13 @@ Shader "Hidden/DarkRoom/Blit"
     float4 _CameraTexture_TexelSize;
     float4 _MaskTexture_TexelSize;
 
+    // Feedback amount, Blend ratio
+    float2 _FeedbackParams;
+
     // Frequency, Exponent
     float2 _NoiseParams;
 
-    // Feedback, Noise to brightness, Noise to H/V displacement
+    // To brightness, To RGB shake, To masked shake, To stretch
     float4 _EffectParams;
 
     float RTime(float multiplier)
@@ -38,41 +41,43 @@ Shader "Hidden/DarkRoom/Blit"
                     float2 uv : TEXCOORD0) : SV_Target
     {
         // Parameter extraction
-        float nfreq    = _NoiseParams.x;
-        float nexp     = _NoiseParams.y;
-        float feedback = _EffectParams.x;
-        float n2br     = _EffectParams.y;
-        float n2hdisp  = _EffectParams.z;
-        float n2vdisp  = _EffectParams.w;
+        float n_freq       = _NoiseParams.x;
+        float n_exp        = _NoiseParams.y;
+        float fb_blend     = _FeedbackParams.y;
+        float n_flicker    = _EffectParams.x;
+        float n_shake_rgb  = _EffectParams.y;
+        float n_shake_mask = _EffectParams.z;
+        float n_stretch    = _EffectParams.w;
 
         // Glitch amount
-        float n = snoise(float2(uv.y * nfreq, RTime(6)));
-        n = pow(abs(n), nexp);
+        float n = snoise(float2(uv.y * n_freq, RTime(6)));
+        n = pow(abs(n), n_exp);
 
-        // Vertical displacement
-        uv.y += n * n2vdisp * 0.2;
+        // Stretch (vertical displacement)
+        uv.y += n * n_stretch * 0.2;
 
-        // Horizontal displacement
+        // Per line random displacement
         uint ln = (uv.y + RTime(60)) * _CameraTexture_TexelSize.w;
-        float disp = GenerateHashedRandomFloat(ln) * n * n2hdisp * 0.2;
+        float disp = GenerateHashedRandomFloat(ln);
 
-        // Webcam input samples with R/B displacement
-        float c_r = tex2D(_CameraTexture, uv - float2(disp, 0)).r;
-        float c_g = tex2D(_CameraTexture, uv                  ).g;
-        float c_b = tex2D(_CameraTexture, uv + float2(disp, 0)).b;
+        // Masked shake (horizontal displacement with mask)
+        float disp_sm = (disp - 0.5) * n * 0.2 * n_shake_mask;
+        float mask = tex2D(_MaskTexture, uv + float2(disp_sm, 0)).r;
+        if (mask > 0.4) uv.x += disp_sm;
+
+        // Webcam input samples with RGB horizontal displacement
+        float disp_rgb = disp * n * 0.2 * n_shake_rgb;
+        float c_r = tex2D(_CameraTexture, uv - float2(disp_rgb, 0)).r;
+        float c_g = tex2D(_CameraTexture, uv                      ).g;
+        float c_b = tex2D(_CameraTexture, uv + float2(disp_rgb, 0)).b;
         float3 c_in = float3(c_r, c_g, c_b);
 
         // Blend with a feedback sample
         float3 c_fb = tex2D(_FeedbackTexture, uv).rgb;
-        float3 c_out = lerp(c_in, max(c_in, c_fb), feedback);;
+        float3 c_out = lerp(c_in, max(c_in, c_fb), fb_blend);
 
-        // Noise to brightness
-        c_out *= 1 - n * n2br;
-
-        // Temp: Desaturation with mask
-        float mask = tex2D(_MaskTexture, uv).r;
-        mask = smoothstep(0.4, 0.5, mask);
-        c_out = lerp(dot(c_out, 0.2), c_out, mask);
+        // Flicker (noise to brightness)
+        c_out *= 1 - n * n_flicker;
 
         return float4(c_out, 1);
     }

@@ -12,7 +12,8 @@ Shader "Hidden/DarkRoom/Feedback"
     float4 _CameraTexture_TexelSize;
     float4 _MaskTexture_TexelSize;
 
-    float _Feedback;
+    // Feedback amount, Blend ratio
+    float2 _FeedbackParams;
 
     void Vertex(uint vid : SV_VertexID,
                 out float4 position : SV_Position,
@@ -27,6 +28,9 @@ Shader "Hidden/DarkRoom/Feedback"
     float4 Fragment(float4 position : SV_Position,
                     float2 uv : TEXCOORD0) : SV_Target
     {
+        // Parameter extraction
+        const float fb_amount = _FeedbackParams.x;
+
         // The gaussian filter constants came from
         // rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
         const float w0 = 0.2270270270;
@@ -36,6 +40,7 @@ Shader "Hidden/DarkRoom/Feedback"
         const float2 d1 = 1.3846153846 * _FeedbackTexture_TexelSize.xy;
         const float2 d2 = 3.2307692308 * _FeedbackTexture_TexelSize.xy;
 
+        // Feedback with a Gaussian blur filter
         float3 fb =
             tex2D(_FeedbackTexture, uv + float2(-d2.x, -d2.y)).rgb * w2 * w2 +
             tex2D(_FeedbackTexture, uv + float2(-d1.x, -d2.y)).rgb * w1 * w2 +
@@ -67,8 +72,9 @@ Shader "Hidden/DarkRoom/Feedback"
             tex2D(_FeedbackTexture, uv + float2(+d1.x, +d2.y)).rgb * w1 * w2 +
             tex2D(_FeedbackTexture, uv + float2(+d2.x, +d2.y)).rgb * w2 * w2;
 
-        float3 wi = tex2D(_CameraTexture, uv).rgb; 
-        return float4(lerp(wi, fb, _Feedback), 1);
+        // Blend with the camera input
+        float3 cam = tex2D(_CameraTexture, uv).rgb;
+        return float4(lerp(cam, fb, fb_amount), 1);
     }
 
     ENDHLSL
