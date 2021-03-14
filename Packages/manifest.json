@@ -1,8 +1,9 @@
 {
   "dependencies": {
-    "com.unity.render-pipelines.universal": "10.3.2",
-    "com.unity.timeline": "1.4.6",
+    "com.unity.render-pipelines.universal": "11.0.0",
+    "com.unity.timeline": "1.5.4",
     "com.unity.ugui": "1.0.0",
+    "com.unity.visualscripting": "1.5.2",
     "com.unity.modules.physics": "1.0.0"
   }
 }
