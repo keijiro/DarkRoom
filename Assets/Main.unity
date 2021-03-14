@@ -601,6 +601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 659637301}
+  - component: {fileID: 659637302}
   m_Layer: 0
   m_Name: Profile
   m_TagString: Untagged
@@ -623,6 +624,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &659637302
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659637300}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &881033455
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +652,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881033457}
-  - component: {fileID: 881033458}
   - component: {fileID: 881033456}
   m_Layer: 0
   m_Name: Processor
@@ -653,13 +672,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13aaf32eeb53f74098027b1f7352fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _source: {fileID: 1606632483}
   _feedbackAmount: 0.95
-  _feedbackBlend: 0.7
-  _noiseFrequency: 0.3
-  _noiseToFlicker: 0.5
-  _noiseToRgbShake: 0.5
-  _noiseToMaskedShake: 0
-  _noiseToStretch: 0.5
+  _feedbackBlend: 0
   _fxShader: {fileID: 4800000, guid: 7d75dc6ed513e8142a033d6b22c4d5ff, type: 3}
   _blitShader: {fileID: 4800000, guid: 40e503e4b5cf5fe4c9172fd8b80760ec, type: 3}
 --- !u!4 &881033457
@@ -676,21 +691,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &881033458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881033455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e419f3f70f408449325e8bf3e8bc7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _webcam: {fileID: 1606632483}
-  _model: {fileID: 5022602860645237092, guid: 1f792b99e1f313d4c8f1ebec6307c6be, type: 3}
-  _compute: {fileID: 7200000, guid: 6f6d5dcd62b5e4842a31dbe6f2b3fe9b, type: 3}
 --- !u!1 &996865261
 GameObject:
   m_ObjectHideFlags: 0

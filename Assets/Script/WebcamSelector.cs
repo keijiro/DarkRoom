@@ -35,7 +35,7 @@ public sealed class WebcamSelector : MonoBehaviour
         if (value == 0) return;
 
         var deviceName = GetComponent<Dropdown>().options[value].text;
-        _webcam = new WebCamTexture(deviceName, 1920, 1080, 30);
+        _webcam = new WebCamTexture(deviceName, 1920, 1080, 60);
         _webcam.Play();
     }
 }

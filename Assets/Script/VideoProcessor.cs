@@ -7,13 +7,9 @@ public sealed class VideoProcessor : MonoBehaviour
 {
     #region Editable attributes
 
+    [SerializeField] WebcamSelector _source = null;
     [SerializeField, Range(0, 1)] float _feedbackAmount = 0.5f;
     [SerializeField, Range(0, 1)] float _feedbackBlend = 0.5f;
-    [SerializeField, Range(0, 1)] float _noiseFrequency = 0.0f;
-    [SerializeField, Range(0, 1)] float _noiseToFlicker = 0.0f;
-    [SerializeField, Range(0, 1)] float _noiseToRgbShake = 0.0f;
-    [SerializeField, Range(0, 1)] float _noiseToMaskedShake = 0.0f;
-    [SerializeField, Range(0, 1)] float _noiseToStretch = 0.0f;
 
     #endregion
 
@@ -26,7 +22,6 @@ public sealed class VideoProcessor : MonoBehaviour
 
     #region Private variables
 
-    SegmentationFilter _source;
     (Material fx, Material blit) _materials;
     (RenderTexture, RenderTexture) _feedback;
 
@@ -40,21 +35,8 @@ public sealed class VideoProcessor : MonoBehaviour
     RenderTexture NewFeedbackRT()
       => new RenderTexture(1920, 1080, 0, RenderTextureFormat.ARGBFloat);
 
-    float DynamicNoiseFrequency
-      => noise.snoise(math.float2(0.234f, (Time.time % 1000) * 4)) * 2;
-
-    float NoiseExponentValue
-      => math.pow(50, 1 - _noiseFrequency);
-
     Vector2 FeedbackParamVector
       => new Vector2(_feedbackAmount, _feedbackBlend);
-
-    Vector2 NoiseParamVector
-      => new Vector2(DynamicNoiseFrequency, NoiseExponentValue);
-
-    Vector4 EffectParamVector
-      => new Vector4(_noiseToFlicker, _noiseToRgbShake,
-                     _noiseToMaskedShake, _noiseToStretch);
 
     #endregion
 
@@ -62,7 +44,6 @@ public sealed class VideoProcessor : MonoBehaviour
 
     void Start()
     {
-        _source = GetComponent<SegmentationFilter>();
         _materials = (new Material(_fxShader), new Material(_blitShader));
         _feedback = (NewFeedbackRT(), NewFeedbackRT());
     }
@@ -80,8 +61,7 @@ public sealed class VideoProcessor : MonoBehaviour
         // Feedback with effects
         var m1 = _materials.fx;
         m1.SetTexture("_FeedbackTexture", _feedback.Item1);
-        m1.SetTexture("_CameraTexture", _source.CameraTexture);
-        m1.SetTexture("_MaskTexture", _source.MaskTexture);
+        m1.SetTexture("_CameraTexture", _source.Texture);
         m1.SetVector("_FeedbackParams", FeedbackParamVector);
         m1.SetPass(0);
         RenderTexture.active = _feedback.Item2;
@@ -90,11 +70,8 @@ public sealed class VideoProcessor : MonoBehaviour
         // Blit to screen
         var m2 = _materials.blit;
         m2.SetTexture("_FeedbackTexture", _feedback.Item2);
-        m2.SetTexture("_CameraTexture", _source.CameraTexture);
-        m2.SetTexture("_MaskTexture", _source.MaskTexture);
-        m1.SetVector("_FeedbackParams", FeedbackParamVector);
-        m2.SetVector("_NoiseParams", NoiseParamVector);
-        m2.SetVector("_EffectParams", EffectParamVector);
+        m2.SetTexture("_CameraTexture", _source.Texture);
+        m2.SetVector("_FeedbackParams", FeedbackParamVector);
         Graphics.DrawProcedural(m2, BigBounds, MeshTopology.Triangles, 6, 1);
 
         // Swap

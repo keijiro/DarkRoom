@@ -6,11 +6,9 @@ Shader "Hidden/DarkRoom/Feedback"
 
     sampler2D _FeedbackTexture;
     sampler2D _CameraTexture;
-    sampler2D _MaskTexture;
 
     float4 _FeedbackTexture_TexelSize;
     float4 _CameraTexture_TexelSize;
-    float4 _MaskTexture_TexelSize;
 
     // Feedback amount, Blend ratio
     float2 _FeedbackParams;
