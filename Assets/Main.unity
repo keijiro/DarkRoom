@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 357231640}
   - component: {fileID: 357231641}
   m_Layer: 0
-  m_Name: Section 1
+  m_Name: 2 Section1 End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,7 @@ PlayableDirector:
   m_GameObject: {fileID: 357231638}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 0544daf2c86cbbe46b73cd92af56c0d8, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -415,10 +415,16 @@ PlayableDirector:
     value: {fileID: 1791677985}
   - key: {fileID: -3290396049974840137, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
     value: {fileID: 1870800267}
-  - key: {fileID: 7250679225953341765, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 659637302}
   - key: {fileID: 4802360727576470873, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
     value: {fileID: 1965934218}
+  - key: {fileID: 0}
+    value: {fileID: 881033458}
+  - key: {fileID: 7250679225953341765, guid: 0544daf2c86cbbe46b73cd92af56c0d8, type: 2}
+    value: {fileID: 659637302}
+  - key: {fileID: -4876391434191655337, guid: 0544daf2c86cbbe46b73cd92af56c0d8, type: 2}
+    value: {fileID: 881033458}
   m_ExposedReferences:
     m_References:
     - d298d4b78c8e77544b739dbfa533f2dd: {fileID: 1368253641}
@@ -533,12 +539,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":173.0,"y":173.0},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{"key":{"$content":"Alpha1","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-31.0,"y":-144.0},"guid":"37830b4f-6e12-4b61-b193-e1223fb774ee","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"10"},{"coroutine":false,"defaultValues":{"key":{"$content":"Alpha2","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-26.0,"y":-16.0},"guid":"b73a9bca-85f8-42bd-a86b-fbfbb60aa994","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"12"},{"coroutine":false,"defaultValues":{"key":{"$content":"Alpha3","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-23.0,"y":126.0},"guid":"e1e085d9-c9c9-4272-8b1f-91afce62a8dc","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"14"},{"coroutine":false,"defaultValues":{"key":{"$content":"Alpha4","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-23.0,"y":268.0},"guid":"f7bcdee0-a982-4951-92be-05441d964742","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"16"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":236.0,"y":-147.0},"guid":"4d0ad5b4-e8c8-4933-822a-fefdf527357f","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"18"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":244.0,"y":-14.0},"guid":"e75928b9-887a-455f-9c29-daef9f55ef23","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"21"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":242.0,"y":140.0},"guid":"038d8a64-c8a6-477d-9ef0-7398be0d55b8","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"24"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":242.0,"y":268.0},"guid":"cb0d6bb2-035f-4c23-873e-634e98adaee0","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"27"},{"sourceUnit":{"$ref":"10"},"sourceKey":"trigger","destinationUnit":{"$ref":"18"},"destinationKey":"enter","guid":"f0cc87f8-e946-4cfb-82df-74ab6a99c587","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"12"},"sourceKey":"trigger","destinationUnit":{"$ref":"21"},"destinationKey":"enter","guid":"9793f02f-da86-48a1-aa62-04177215bbc2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"14"},"sourceKey":"trigger","destinationUnit":{"$ref":"24"},"destinationKey":"enter","guid":"780883d5-6cc9-4685-bae8-9f571f87801b","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"16"},"sourceKey":"trigger","destinationUnit":{"$ref":"27"},"destinationKey":"enter","guid":"37fe21e4-6cdd-4470-aaea-6d9a10987bea","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}}'
+    _json: '{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":558.0,"y":151.0},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{"key":{"$content":"Alpha1","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-31.0,"y":-144.0},"guid":"37830b4f-6e12-4b61-b193-e1223fb774ee","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"10"},{"coroutine":false,"defaultValues":{"key":{"$content":"Alpha2","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-26.0,"y":-16.0},"guid":"b73a9bca-85f8-42bd-a86b-fbfbb60aa994","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"12"},{"coroutine":false,"defaultValues":{"key":{"$content":"Q","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":387.0,"y":183.0},"guid":"e1e085d9-c9c9-4272-8b1f-91afce62a8dc","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"14"},{"coroutine":false,"defaultValues":{"key":{"$content":"A","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-54.0,"y":340.0},"guid":"f7bcdee0-a982-4951-92be-05441d964742","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"16"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":236.0,"y":-147.0},"guid":"4d0ad5b4-e8c8-4933-822a-fefdf527357f","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"18"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":244.0,"y":-14.0},"guid":"e75928b9-887a-455f-9c29-daef9f55ef23","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"21"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":652.0,"y":197.0},"guid":"038d8a64-c8a6-477d-9ef0-7398be0d55b8","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"24"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":211.0,"y":340.0},"guid":"cb0d6bb2-035f-4c23-873e-634e98adaee0","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"27"},{"coroutine":false,"defaultValues":{"key":{"$content":"S","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-21.0,"y":525.0},"guid":"d8c84545-d183-4797-bb95-83bd206414d4","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"30"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":4,"$type":"UnityEngine.Object"}},"position":{"x":244.0,"y":525.0},"guid":"bfc76970-0bf9-468a-b99c-1ca0676aec54","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"32"},{"coroutine":false,"defaultValues":{"key":{"$content":"Z","$type":"UnityEngine.KeyCode"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":423.0,"y":721.0},"guid":"ece387b3-79e3-477d-a2ae-6f7d9bc01efa","$version":"A","$type":"Unity.VisualScripting.OnKeyboardInput","$id":"35"},{"chainable":false,"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.Playables.PlayableDirector","targetTypeName":"UnityEngine.Playables.PlayableDirector","$version":"A"},"defaultValues":{"target":{"$content":5,"$type":"UnityEngine.Object"}},"position":{"x":688.0,"y":721.0},"guid":"40089765-1a88-4de8-8d2e-2761e1ac01de","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"37"},{"sourceUnit":{"$ref":"10"},"sourceKey":"trigger","destinationUnit":{"$ref":"18"},"destinationKey":"enter","guid":"f0cc87f8-e946-4cfb-82df-74ab6a99c587","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"12"},"sourceKey":"trigger","destinationUnit":{"$ref":"21"},"destinationKey":"enter","guid":"9793f02f-da86-48a1-aa62-04177215bbc2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"14"},"sourceKey":"trigger","destinationUnit":{"$ref":"24"},"destinationKey":"enter","guid":"780883d5-6cc9-4685-bae8-9f571f87801b","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"16"},"sourceKey":"trigger","destinationUnit":{"$ref":"27"},"destinationKey":"enter","guid":"37fe21e4-6cdd-4470-aaea-6d9a10987bea","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"30"},"sourceKey":"trigger","destinationUnit":{"$ref":"32"},"destinationKey":"enter","guid":"558df9cd-d8a3-47c1-af0a-761350945391","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"35"},"sourceKey":"trigger","destinationUnit":{"$ref":"37"},"destinationKey":"enter","guid":"e7588418-eb76-47a4-aeaa-fe453ec5bd59","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}}'
     _objectReferences:
     - {fileID: 1042170295}
     - {fileID: 357231640}
     - {fileID: 1905072957}
     - {fileID: 1844591872}
+    - {fileID: 1280406927}
+    - {fileID: 1303854978}
 --- !u!114 &388025439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,12 +560,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Title","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Section1","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Section2","value":{"$content":2,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Closing","value":{"$content":3,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[{"name":"Section1 Start","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Section1
+      End","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Section2","value":{"$content":2,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Section3
+      Start","value":{"$content":3,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Section3
+      End","value":{"$content":4,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Closing","value":{"$content":5,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 1042170295}
     - {fileID: 357231640}
     - {fileID: 1905072957}
     - {fileID: 1844591872}
+    - {fileID: 1303854978}
+    - {fileID: 1303854978}
 --- !u!1 &400581660
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +729,8 @@ Transform:
   - {fileID: 357231639}
   - {fileID: 1905072956}
   - {fileID: 1844591871}
+  - {fileID: 1280406926}
+  - {fileID: 1303854977}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -940,6 +955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 653050195}
   - component: {fileID: 653050196}
+  - component: {fileID: 653050197}
   m_Layer: 0
   m_Name: Color 2
   m_TagString: Untagged
@@ -978,6 +994,25 @@ MonoBehaviour:
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: 2c3faa1b182f8054fa198800265f3105, type: 2}
+--- !u!95 &653050197
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653050194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &659637300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1113,7 @@ MonoBehaviour:
   isGlobal: 1
   priority: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: 4925fea26c5b1be46b798475c6f0bb3d, type: 2}
 --- !u!1 &881033455
 GameObject:
@@ -1090,6 +1125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881033457}
   - component: {fileID: 881033456}
+  - component: {fileID: 881033458}
   m_Layer: 0
   m_Name: Processor
   m_TagString: Untagged
@@ -1128,6 +1164,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &881033458
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881033455}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &916707825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1315,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.041384846, g: 0.11700982, b: 0.23584908, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1318,7 +1373,7 @@ GameObject:
   - component: {fileID: 1042170294}
   - component: {fileID: 1042170295}
   m_Layer: 0
-  m_Name: Title
+  m_Name: 1 Section1 Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1363,6 +1418,10 @@ PlayableDirector:
     value: {fileID: 1791677985}
   - key: {fileID: 4765455057847779362, guid: d48b70e3a35e2f845b7bb616d0c5fbdb, type: 2}
     value: {fileID: 916707825}
+  - key: {fileID: 1494716782691157974, guid: d48b70e3a35e2f845b7bb616d0c5fbdb, type: 2}
+    value: {fileID: 659637302}
+  - key: {fileID: 1363056035624109501, guid: d48b70e3a35e2f845b7bb616d0c5fbdb, type: 2}
+    value: {fileID: 881033458}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1068478358
@@ -1791,6 +1850,132 @@ Transform:
   m_Father: {fileID: 1737939469}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1280406925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1280406926}
+  - component: {fileID: 1280406927}
+  m_Layer: 0
+  m_Name: 5 Section3 End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1280406926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280406925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 434091930}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1280406927
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280406925}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: f9e840eeeaa244c469b66878c7aa5bcc, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 441116357}
+  - key: {fileID: -3394691267077577538, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 1870800267}
+  - key: {fileID: -6382447017333079646, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 659637302}
+  - key: {fileID: -4172495676861907403, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 1259972606}
+  - key: {fileID: 2577651348638567716, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 1560050116}
+  - key: {fileID: 948171325734609538, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 1658606045}
+  - key: {fileID: -4830850965314015910, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 1161164353}
+  - key: {fileID: 6338417878787190488, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 441116357}
+  - key: {fileID: -1642144449881745153, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 1870800267}
+  - key: {fileID: 6338417878787190488, guid: f9e840eeeaa244c469b66878c7aa5bcc, type: 2}
+    value: {fileID: 441116357}
+  - key: {fileID: -1642144449881745153, guid: f9e840eeeaa244c469b66878c7aa5bcc, type: 2}
+    value: {fileID: 1870800267}
+  m_ExposedReferences:
+    m_References: []
+--- !u!1 &1303854976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1303854977}
+  - component: {fileID: 1303854978}
+  m_Layer: 0
+  m_Name: 6 Closing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1303854977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303854976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 434091930}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1303854978
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303854976}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -3394691267077577538, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 1870800267}
+  - key: {fileID: -6382447017333079646, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 659637302}
+  - key: {fileID: -4172495676861907403, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 1259972606}
+  - key: {fileID: 2577651348638567716, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+    value: {fileID: 1560050116}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1368253641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,14 +2014,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -2623,7 +2806,7 @@ GameObject:
   - component: {fileID: 1844591871}
   - component: {fileID: 1844591872}
   m_Layer: 0
-  m_Name: Closing
+  m_Name: 4 Section3 Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2652,13 +2835,13 @@ PlayableDirector:
   m_GameObject: {fileID: 1844591870}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -7217741787132670566, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 441116357}
   - key: {fileID: -3394691267077577538, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
     value: {fileID: 1870800267}
@@ -2668,6 +2851,14 @@ PlayableDirector:
     value: {fileID: 1259972606}
   - key: {fileID: 2577651348638567716, guid: 1d8bb0e03285d3f4ea8a21be1e4a0767, type: 2}
     value: {fileID: 1560050116}
+  - key: {fileID: 948171325734609538, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 1658606045}
+  - key: {fileID: -4830850965314015910, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 1161164353}
+  - key: {fileID: 6338417878787190488, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 441116357}
+  - key: {fileID: -1642144449881745153, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+    value: {fileID: 1870800267}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1862901507
@@ -2847,7 +3038,7 @@ GameObject:
   - component: {fileID: 1905072956}
   - component: {fileID: 1905072957}
   m_Layer: 0
-  m_Name: Section 2
+  m_Name: 3 Section2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2876,13 +3067,13 @@ PlayableDirector:
   m_GameObject: {fileID: 1905072955}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -6059583087562575835, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1791677985}
   - key: {fileID: -1642144449881745153, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
     value: {fileID: 1870800267}
@@ -2892,6 +3083,12 @@ PlayableDirector:
     value: {fileID: 1161164353}
   - key: {fileID: 6338417878787190488, guid: 3aa946a004c80b04ba03dc35a59fbd0b, type: 2}
     value: {fileID: 441116357}
+  - key: {fileID: -7925465190469643824, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
+    value: {fileID: 1791677985}
+  - key: {fileID: 4802360727576470873, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
+    value: {fileID: 1965934218}
+  - key: {fileID: -3290396049974840137, guid: 8d8f443f1fc759848a811e54faaef6ee, type: 2}
+    value: {fileID: 1870800267}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1922183634
